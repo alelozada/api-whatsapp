@@ -8,9 +8,9 @@ const morgan = require('morgan')
 const config = require('./config')
 
 // ? Routers
-const userRouter = require('./users/users.routes').router
 const authRouter = require('./auth/auth.routes').router
-const conversationRouter = require('./conversations/conversations.routes').router
+const userRouter = require('./users/users.routes').router
+// const conversationRouter = require('./conversations/conversations.routes').router
 
 
 // * ---- Initial configuration ----
@@ -35,9 +35,13 @@ else app.use(morgan("combined"))
 // * ---- Endpoints ----
 
 // ? users
-app.use('/api/v1/users', userRouter)
+// app.use('/api/v1/users', (req, res) => {
+//   res.status(200).json({message: "OK!"})
+// })
+
+app.use('/api/v1/users', authRouter )
 app.use('/api/v1/auth', authRouter )
-app.use('/api/v1/conversations', conversationRouter)
+// app.use('/api/v1/conversations', conversationRouter)
 
 // ? listen function
 app.listen(config.port, () => {

@@ -19,7 +19,7 @@ if (configObj.use_env_variable) {
   sequelize = new Sequelize(configObj.database, configObj.username, configObj.password, configObj);
 }
 
-function initModels(sequelize) {
+function initModels() {
   var conversations = _conversations(sequelize, DataTypes);
   var message = _message(sequelize, DataTypes);
   var participants = _participants(sequelize, DataTypes);
