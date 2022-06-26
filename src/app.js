@@ -10,7 +10,7 @@ const config = require('./config')
 // ? Routers
 const authRouter = require('./auth/auth.routes').router
 const userRouter = require('./users/users.routes').router
-// const conversationRouter = require('./conversations/conversations.routes').router
+const conversationRouter = require('./conversations/conversations.routes').router
 const participantsRouter = require('./participants/participants.routes').router
 
 
@@ -42,7 +42,7 @@ else app.use(morgan("combined"))
 
 app.use('/api/v1/users', userRouter )
 app.use('/api/v1/auth', authRouter )
-// app.use('/api/v1/conversations', conversationRouter)
+app.use('/api/v1/conversations', conversationRouter)
 app.use('/api/v1/conversations', participantsRouter)
 
 // ? listen function
