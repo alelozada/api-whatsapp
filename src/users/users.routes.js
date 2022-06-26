@@ -1,13 +1,13 @@
 // ? Dependencies
 const router = require('express').Router()
-const userHttpHandler = require('./users.http')
-
-// ? Import files
-const config = require('../config')
 
 // ? Rutas protegidas
 const passport = require('passport')
 require('../tools/auth')(passport)
+
+// ? Import files
+const userHttpHandler = require('./users.http')
+const config = require('../config')
 
 /*
   //todo: get /users

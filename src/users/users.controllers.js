@@ -30,13 +30,13 @@ const registerUser = async (data) => {
 const getAllUsers = async () => {
   
   // ? SELECT * FROM users
-  const users = await users.findAll({
+  const allUsers = await users.findAll({
     attributes: {
       exclude: ["password"]
     }
   })
 
-  return users
+  return allUsers
 }
 
 // ?

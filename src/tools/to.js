@@ -2,7 +2,7 @@
 
 const to = (promise) => {
   return promise
-    .then((res) => [res, null])
+    .then((data) => [data, null])
     .catch((err) => [null, err])
 }
 
