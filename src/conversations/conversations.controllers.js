@@ -6,6 +6,9 @@ const getConversationInfo = async (id) => {
     where: {
       id
     },
+    attributes: {
+      exclude: ["createdAt", "updatedAt"]
+    },
     include: [
       {
         model: models.participants,
