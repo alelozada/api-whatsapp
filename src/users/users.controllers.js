@@ -1,6 +1,8 @@
 // ? Dependencies
-const crypto = require('../tools/crypto')
 const uuid = require('uuid')
+
+// ? Import files
+const crypto = require('../tools/crypto')
 
 // ? Cargando los modelos
 const users = require('../database/models/init-models').initModels().users
@@ -20,9 +22,11 @@ const registerUser = async (data) => {
     password: hashedPassword
   })
 
-  return{
+  console.log('Datos del usuario', newUser.dataValues);
+
+  return {
     message: `User created succesfully with the id: ${userId}`,
-    user: newUser
+    user: newUser.dataValues
   }
 }
 

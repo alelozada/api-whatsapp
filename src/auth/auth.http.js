@@ -39,6 +39,28 @@ const loginUser = async (req, res) => {
   res.status(200).json({token: token})
 }
 
+const registerUser = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({message: "Missing data"})
+  } else if (
+    !req.body.firstname ||
+    !req.body.lastname ||
+    !req.body.email || 
+    !req.body.password ||
+    !req.body.phone) {
+    return res.status(400).json({message: "Missing data"})
+  }
+
+  const [data, e] = await to(userController.registerUser(req.body))
+  
+  if (e || !data) {
+    res.status(400).json({message: 'Server error'})
+  }
+
+  res.status(200).json(data)
+}
+
 module.exports = {
-  loginUser
+  loginUser,
+  registerUser
 }
