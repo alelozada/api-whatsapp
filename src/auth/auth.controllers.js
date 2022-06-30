@@ -3,6 +3,9 @@ const userController = require('../users/users.controllers')
 const crypto = require('../tools/crypto')
 const { to } = require('../tools/to')
 
+
+//*---- C O N T R O L L E R S ----*//
+
 // ? Verificar las credenciales del usuario
 const checkUsersCredential = async (email, password) => {
   const [user, err] = await to(userController.getUserByEmail(email))

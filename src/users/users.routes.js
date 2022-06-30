@@ -1,35 +1,26 @@
 // ? Dependencies
 const router = require('express').Router()
 
-// ? Rutas protegidas
+// ? Protected routes
 const passport = require('passport')
 require('../tools/auth')(passport)
 
 // ? Import files
 const userHttpHandler = require('./users.http')
 
-/*
-  //todo: get /users
-  //todo: get /users/:id 
-  todo: put /users/:id
-  todo: delete /users/:id
-  todo: get /users/me
-*/
+
+//*---- R O U T E S ----*//
 
 router.route('/')
-  // .get(userHttpHandler.getAllUsers)
   .get(passport.authenticate('jwt', {session: false}), userHttpHandler.getAllUsers)
 
 router.route('/:uuid')
   .get(passport.authenticate('jwt', {session: false}), userHttpHandler.getUserById)
-  .put(userHttpHandler.editUser)
-  .delete(userHttpHandler.deleteUser)
+  .put(passport.authenticate('jwt', {session: false}), userHttpHandler.editUser)
+  .delete(passport.authenticate('jwt', {session: false}), userHttpHandler.deleteUser)
 
 router.route('/me')
-  .get(userHttpHandler.deleteUser)
-
-router.route('/id')
-  .delete(passport.authenticate('jwt', {session: false}) ,userHttpHandler.deleteUser)
+  .get(passport.authenticate('jwt', {session: false}), userHttpHandler.getUserByEmail)
 
 module.exports = {
   router

@@ -8,8 +8,9 @@ const config = require('../config')
 const { to } = require('../tools/to')
 
 
-// * ---- Verificación de usuarios ----
+//*---- H T T P   H  A N D L E R S ----*//
 
+// ? función para verificar un usuario e iniciar sesión
 const loginUser = async (req, res) => {
   if (!req.body) {
     return res.status(400).json({message: "Missing data"})
@@ -36,9 +37,11 @@ const loginUser = async (req, res) => {
     id: user.id,
     email: req.body.email
   }, config.jwtSecret)
+
   res.status(200).json({token: token})
 }
 
+// ? función para registrar un usuario
 const registerUser = async (req, res) => {
   if (!req.body) {
     return res.status(400).json({message: "Missing data"})

@@ -2,7 +2,7 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
-// const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit"); // used only if you want limit the request to your API
 
 // ? Import files
 const config = require('./config')
@@ -14,7 +14,7 @@ const conversationRouter = require('./conversations/conversations.routes').route
 const participantsRouter = require('./participants/participants.routes').router
 
 
-// * ---- Initial configuration ----
+//*---- I N I T I A L   C O N F I G U R A T I O N ----*//
 
 // ? Init express app
 const app = express()
@@ -33,15 +33,15 @@ if (config.nodeEnv === "development") app.use(morgan("dev"))
 else app.use(morgan("combined"))
 
 
-// * ---- Endpoints ----
+//*---- E N D P O I N T S ----*//
+
+// ? auth
+app.use('/api/v1/auth', authRouter )
 
 // ? users
-// app.use('/api/v1/users', (req, res) => {
-//   res.status(200).json({message: "OK!"})
-// })
-
 app.use('/api/v1/users', userRouter )
-app.use('/api/v1/auth', authRouter )
+
+// ? conversations
 app.use('/api/v1/conversations', conversationRouter)
 app.use('/api/v1/conversations', participantsRouter)
 

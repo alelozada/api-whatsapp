@@ -2,7 +2,7 @@
 const usersController = require('./users.controllers')
 
 
-// * ---- HTTP handlers ----
+//*---- H T T P   H  A N D L E R S ----*//
 
 const getAllUsers = async (req, res) => {
   const users = await usersController.getAllUsers()
@@ -14,15 +14,17 @@ const getUserById = async (req, res) => {
   res.status(200).json(user)
 }
 
-const deleteUser = async (req, res) => {
+const getUserByEmail = async (req, res) => {
+  const user = await usersController.getUserByEmail(req.user.email)
+  res.status(200).json(user)
+}
 
+const deleteUser = async (req, res) => {
   const data = await usersController.deleteUser(req.params.uuid)
   res.status(200).json(data)
 }
 
-// TODO: Una función para editar a un usuario.
 const editUser = async (req, res) => {
-  
   const user = await usersController.editUser(req.params.uuid, req.body)
   res.status(200).json(user)
 }
@@ -30,6 +32,7 @@ const editUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
+  getUserByEmail,
   deleteUser,
   editUser
 }
