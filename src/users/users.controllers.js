@@ -87,6 +87,12 @@ const deleteUser = async (id) => {
 
 // ?
 const editUser = async (id, data) => {
+  console.log("Este es el id a modificar:", id );
+  console.log("Estos son los datos a modificar:", data);
+
+  if(data.password || data.id) {
+    return {message: "You can't modified this information"}
+  }
 
   // ? UPDATE users SET data WHERE id
   const user = await users.update(data, {

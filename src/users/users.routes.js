@@ -7,7 +7,6 @@ require('../tools/auth')(passport)
 
 // ? Import files
 const userHttpHandler = require('./users.http')
-const config = require('../config')
 
 /*
   //todo: get /users
@@ -19,16 +18,18 @@ const config = require('../config')
 
 router.route('/')
   // .get(userHttpHandler.getAllUsers)
-  .get(passport.authenticate('jwt', config.jwtSecret), userHttpHandler.getAllUsers)
+  .get(passport.authenticate('jwt', {session: false}), userHttpHandler.getAllUsers)
 
-router.route('/id')
-  .get(passport.authenticate('jwt', config.jwtSecret), userHttpHandler.getUserById)
+router.route('/:uuid')
+  .get(passport.authenticate('jwt', {session: false}), userHttpHandler.getUserById)
+  .put(userHttpHandler.editUser)
+  .delete(userHttpHandler.deleteUser)
 
 router.route('/me')
   .get(userHttpHandler.deleteUser)
 
 router.route('/id')
-  .delete(passport.authenticate('jwt', config.jwtSecret) ,userHttpHandler.deleteUser)
+  .delete(passport.authenticate('jwt', {session: false}) ,userHttpHandler.deleteUser)
 
 module.exports = {
   router

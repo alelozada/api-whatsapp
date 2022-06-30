@@ -16,12 +16,15 @@ const getUserById = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 
-  const user = await usersController.deleteUser(req.user.id)
-  res.status(200).json(user)
+  const data = await usersController.deleteUser(req.params.uuid)
+  res.status(200).json(data)
 }
 
+// TODO: Una función para editar a un usuario.
 const editUser = async (req, res) => {
-
+  
+  const user = await usersController.editUser(req.params.uuid, req.body)
+  res.status(200).json(user)
 }
 
 module.exports = {
