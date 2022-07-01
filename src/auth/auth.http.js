@@ -8,7 +8,7 @@ const config = require('../config')
 const { to } = require('../tools/to')
 
 
-//*---- H T T P   H  A N D L E R S ----*//
+//*---- H T T P   H A N D L E R S ----*//
 
 // ? función para verificar un usuario e iniciar sesión
 const loginUser = async (req, res) => {

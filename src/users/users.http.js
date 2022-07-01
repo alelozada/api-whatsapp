@@ -2,7 +2,7 @@
 const usersController = require('./users.controllers')
 
 
-//*---- H T T P   H  A N D L E R S ----*//
+//*---- H T T P   H A N D L E R S ----*//
 
 const getAllUsers = async (req, res) => {
   const users = await usersController.getAllUsers()

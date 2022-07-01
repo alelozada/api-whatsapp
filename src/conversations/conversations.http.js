@@ -2,7 +2,13 @@
 const { to } = require('../tools/to')
 const conversationController = require('./conversations.controllers')
 
-// * ---- HTTP handlers ----
+//*---- H T T P   H A N D L E R S ----*//
+
+const getAllConversations = async (req, res) => {
+  console.log(req.user);
+  const conversations = await conversationController.getAllConversations(req.user.id)
+  res.status(200).json(conversations)
+}
 
 const getConversationInfo = async (req, res) => {
   const [data, err] = await to(conversationController.getConversationInfo(req.params.uuid))
@@ -13,4 +19,7 @@ const getConversationInfo = async (req, res) => {
   }
 }
 
-module.exports = { getConversationInfo }
+module.exports = { 
+  getConversationInfo,
+  getAllConversations
+}
